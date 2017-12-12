@@ -1,8 +1,8 @@
 driver:
   name: vagrant
   customize:
-    cpus: 2
-    memory: 4096
+    cpus: 1
+    memory: 2048
 
 provisioner:
   name: chef_zero
@@ -12,12 +12,20 @@ verifier:
   name: inspec
 
 platforms:
-  - name: windows-2008r2
-    driver_config:
-      box: chef/windows-server-2008r2-standard
-  - name: windows-2012r2
-    driver_config:
-      box: chef/windows-server-2012r2-standard
+#  - name: windows-2008r2
+#    driver_config:
+#      box: chef/windows-server-2008r2-standard
+#  - name: windows-2012r2
+#    driver_config:
+#      box: chef/windows-server-2012r2-standard
+ - name: windows-2012-r2
+   driver_config:
+     box_url: E:\\artifactory\\windows2012r2min-hyperv.box
+     provider: hyperv
+     memory: 2048
+     cpus: 1
+     network:
+       - ["private_network",{bridge: "internal_switch"}]
 
 suites:
   - name: default
